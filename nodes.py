@@ -266,6 +266,27 @@ def _apply_tone_adjustment(
     return Image.fromarray((arr * 255.0).round().astype(np.uint8), mode="RGB")
 
 
+def _apply_vignette(image: Image.Image, outer_brightness: float, inner_brightness: float) -> Image.Image:
+    arr = np.asarray(image.convert("RGB"), dtype=np.float32) / 255.0
+    height, width = arr.shape[:2]
+    yy, xx = np.mgrid[0:height, 0:width].astype(np.float32)
+    nx = (xx - (width * 0.5)) / max(width * 0.5, 1.0)
+    ny = (yy - (height * 0.5)) / max(height * 0.5, 1.0)
+    radius = np.sqrt(nx * nx + ny * ny)
+    radius = np.clip(radius, 0.0, 1.0)
+
+    inner_mask = np.clip(1.0 - radius, 0.0, 1.0)
+    inner_mask = inner_mask * inner_mask * (3.0 - 2.0 * inner_mask)
+    outer_mask = 1.0 - inner_mask
+
+    outer_gain = 1.0 + float(outer_brightness)
+    inner_gain = 1.0 + float(inner_brightness)
+
+    gain = outer_mask[..., None] * outer_gain + inner_mask[..., None] * inner_gain
+    out = np.clip(arr * gain, 0.0, 1.0)
+    return Image.fromarray((out * 255.0).round().astype(np.uint8), mode="RGB")
+
+
 def _apply_style_fx(
     image: Image.Image,
     mode: str,
@@ -568,6 +589,30 @@ class OneArtPhotoToneAdjust:
                 warmth=warmth,
             )
             output.append(_pil_to_tensor(adjusted))
+        return (torch.stack(output, dim=0),)
+
+
+class OneArtPhotoVignette:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "images": ("IMAGE",),
+                "outer_brightness": ("FLOAT", {"default": -0.25, "min": -1.0, "max": 1.0, "step": 0.01}),
+                "inner_brightness": ("FLOAT", {"default": 0.0, "min": -1.0, "max": 1.0, "step": 0.01}),
+            }
+        }
+
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "apply"
+    CATEGORY = "oneart/photo"
+
+    def apply(self, images, outer_brightness, inner_brightness):
+        images = _ensure_batch(images)
+        output = []
+        for index in range(images.shape[0]):
+            image = _tensor_to_pil(images[index])
+            output.append(_pil_to_tensor(_apply_vignette(image, outer_brightness, inner_brightness)))
         return (torch.stack(output, dim=0),)
 
 
@@ -972,6 +1017,7 @@ class OneArtPhotoAllInOne:
 NODE_CLASS_MAPPINGS = {
     "OneArtPhotoNoise": OneArtPhotoNoise,
     "OneArtPhotoToneAdjust": OneArtPhotoToneAdjust,
+    "OneArtPhotoVignette": OneArtPhotoVignette,
     "OneArtPhotoStyleFX": OneArtPhotoStyleFX,
     "OneArtPhotoLUT": OneArtPhotoLUT,
     "OneArtPhotoGrain": OneArtPhotoGrain,
@@ -987,6 +1033,7 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     "OneArtPhotoNoise": "OneArt Photo Noise",
     "OneArtPhotoToneAdjust": "OneArt Photo Tone Adjust",
+    "OneArtPhotoVignette": "OneArt Photo Vignette",
     "OneArtPhotoStyleFX": "OneArt Photo Style FX",
     "OneArtPhotoLUT": "OneArt Photo LUT",
     "OneArtPhotoGrain": "OneArt Photo Grain",
