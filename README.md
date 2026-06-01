@@ -1,8 +1,9 @@
 # OneArt Photo
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom%20Nodes-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![Release](https://img.shields.io/github/v/release/oneartai-lab/ComfyUI-oneart-photo)
 
 <p align="center">
   <img src="assets/preview.jpg" width="100%">
@@ -95,31 +96,21 @@ Generation → Lens Effects → LUT Processing → Metadata Export → Final Ima
 
 ## 🖼️ Example Results
 
-The project is designed to give you precise control over visual styling. Below is a step-by-step breakdown of how the image transforms through the pipeline:
+OneArt Photo is built to give you precise control over your image aesthetics. Below are comparison pairs demonstrating different photographic transformations:
 
-### 1. Original Generation
-The raw AI image directly from the generator:
-<p align="center">
-  <img src="assets/example_original.jpg" width="80%">
-</p>
+### Example 1: Analog Portrait Styling
+*Applying skin smoothing (Soft Portrait), color warmth, vintage vignetting, LUT color grading, and organic sensor noise.*
 
-### 2. Lens Distortion & Vignette
-Simulating optical properties and imperfections of real camera lenses:
-<p align="center">
-  <img src="assets/example_lens.jpg" width="80%">
-</p>
+| Original AI Output | OneArt Photo Processed |
+| :---: | :---: |
+| <img src="assets/example_1_before.jpg" width="100%"> | <img src="assets/example_1_after.jpg" width="100%"> |
 
-### 3. LUT Processing & Color Grading
-Applying cinematic and analog color lookup tables:
-<p align="center">
-  <img src="assets/example_lut.jpg" width="80%">
-</p>
+### Example 2: Lens Aberration & Tone Adjust
+*Applying lens warping, tone balance adjustments (shadows/highlights), and high-resolution procedural film grain.*
 
-### 4. Final Output
-Completed image with sensor noise, grain, and embedded camera metadata:
-<p align="center">
-  <img src="assets/example_final.jpg" width="80%">
-</p>
+| Original AI Output | OneArt Photo Processed |
+| :---: | :---: |
+| <img src="assets/example_2_before.jpg" width="100%"> | <img src="assets/example_2_after.jpg" width="100%"> |
 
 ---
 
