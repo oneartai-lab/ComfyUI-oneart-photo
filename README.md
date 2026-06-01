@@ -4,26 +4,15 @@
 ![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom%20Nodes-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+<p align="center">
+  <img src="assets/preview.jpg" width="100%">
+</p>
+
 Professional photo finishing nodes for ComfyUI.
 
 OneArt Photo is an open-source custom node pack that brings photography-inspired post-processing workflows to ComfyUI. It focuses on image finishing, metadata embedding, lens effects, LUT-based color grading, and camera-style transformations for AI-generated content.
 
 Designed for creators, photographers, and workflow builders who want more control over the final visual look of generated images.
-
----
-
-## 📸 Showcase & Results
-
-Here is a visual demonstration of the OneArt Photo node suite in action:
-
-![OneArt Photo Workflow Demonstration](assets/workflow_demo.gif)
-*Example workflow applying camera sensor noise, color grading via LUT, and film grain.*
-
-### Before & After Comparison
-
-| Original AI Output | OneArt Photo Processed (Analog/Cinematic Look) |
-| :---: | :---: |
-| ![Original Image](assets/comparison_before.png) | ![Processed Image](assets/comparison_after.png) |
 
 ---
 
@@ -92,20 +81,45 @@ Search for **`OneArt Photo`** in the custom nodes catalog and click **Install**.
 
 ---
 
-## 🔄 Example Workflow
+## 🔄 Workflow Preview
 
-```mermaid
-graph TD
-    Gen[Image Generation] --> Finish[Photo Finishing & Tone Adjust]
-    Finish --> Lens[Lens Effects & Vignette]
-    Lens --> LUT[LUT Processing / Color Grading]
-    LUT --> Meta[Metadata Export / Save JPEG]
-    Meta --> Prod[Final Production Image]
-    style Gen fill:#f9f,stroke:#333,stroke-width:2px
-    style Prod fill:#bbf,stroke:#333,stroke-width:2px
-```
+Generation → Lens Effects → LUT Processing → Metadata Export → Final Image
+
+<p align="center">
+  <img src="assets/workflow_demo.gif" width="100%">
+</p>
 
 *You can find ready-to-use ComfyUI workflow JSON files in the [workflows/](workflows/) directory.*
+
+---
+
+## 🖼️ Example Results
+
+The project is designed to give you precise control over visual styling. Below is a step-by-step breakdown of how the image transforms through the pipeline:
+
+### 1. Original Generation
+The raw AI image directly from the generator:
+<p align="center">
+  <img src="assets/example_original.jpg" width="80%">
+</p>
+
+### 2. Lens Distortion & Vignette
+Simulating optical properties and imperfections of real camera lenses:
+<p align="center">
+  <img src="assets/example_lens.jpg" width="80%">
+</p>
+
+### 3. LUT Processing & Color Grading
+Applying cinematic and analog color lookup tables:
+<p align="center">
+  <img src="assets/example_lut.jpg" width="80%">
+</p>
+
+### 4. Final Output
+Completed image with sensor noise, grain, and embedded camera metadata:
+<p align="center">
+  <img src="assets/example_final.jpg" width="80%">
+</p>
 
 ---
 
@@ -127,15 +141,11 @@ Integrate finishing steps directly into automated, batch-processed ComfyUI workf
 
 ## ❓ Why OneArt Photo?
 
-Many ComfyUI workflows focus on the generation phase. OneArt Photo focuses on the final stage:
+Most ComfyUI workflows focus on image generation.
 
-* Image finishing & polishing
-* Presentation quality
-* Color consistency
-* EXIF metadata preservation
-* Photography-inspired rendering
+OneArt Photo focuses on the final stage of the pipeline: photo finishing, visual consistency, metadata preservation, and camera-inspired rendering.
 
-This makes it easier to build production-ready workflows entirely inside ComfyUI.
+The goal is to make AI-generated images easier to bring to production quality without leaving ComfyUI.
 
 ---
 
