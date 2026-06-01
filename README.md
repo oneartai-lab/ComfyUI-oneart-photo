@@ -1,11 +1,10 @@
 # OneArt Photo
 
-Professional photo finishing nodes for ComfyUI.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom%20Nodes-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom_Nodes-orange.svg)](https://github.com/comfyanonymous/ComfyUI)
-[![Release v0.1.0](https://img.shields.io/badge/release-v0.1.0-green.svg)](https://github.com/oneartai-lab/ComfyUI-oneart-photo/releases/tag/v0.1.0)
+Professional photo finishing nodes for ComfyUI.
 
 OneArt Photo is an open-source custom node pack that brings photography-inspired post-processing workflows to ComfyUI. It focuses on image finishing, metadata embedding, lens effects, LUT-based color grading, and camera-style transformations for AI-generated content.
 
